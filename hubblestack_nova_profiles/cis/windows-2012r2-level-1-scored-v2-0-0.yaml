@@ -567,7 +567,7 @@ win_secedit:
     microsoft_network_server_server_spn_target_name_validation_level :
       data:
         'Microsoft Windows Server 2012*':
-          - 'MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\SMBServerNameHardeningLevel':
+          - 'MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\SmbServerNameHardeningLevel':
               tag: CIS-2.3.9.5
               match_output: '4,1'
               value_type: 'equal'
@@ -617,7 +617,7 @@ win_secedit:
         'Microsoft Windows Server 2012*':
           - 'MACHINE\System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths\Machine':
               tag: CIS-2.3.10.7
-              match_output: '7,System\CurrentControlSet\Control\ProductOptions, System\CurrentControlSet\Control\Server Applications, Software\Microsoft\Windows NT\CurrentVersion' #needs work to fix
+              match_output: '7,System\CurrentControlSet\Control\ProductOptions,System\CurrentControlSet\Control\Server Applications,Software\Microsoft\Windows NT\CurrentVersion'
               value_type: 'equal'
       description: (l1) ensure 'network access - remotely accessible registry paths'
     network_access_remotely_accessible_registry_paths_and_sub-paths :
@@ -625,7 +625,7 @@ win_secedit:
         'Microsoft Windows Server 2012*':
           - 'MACHINE\System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedPaths\Machine':
               tag: CIS-2.3.10.8
-              match_output: '7,System\CurrentControlSet\Control\Print\Printers, System\CurrentControlSet\Services\Eventlog, Software\Microsoft\OLAP Server, Software\Microsoft\Windows NT\CurrentVersion\Print, Software\Microsoft\Windows NT\CurrentVersion\Windows, System\CurrentControlSet\Control\ContentIndex, System\CurrentControlSet\Control\Terminal Server, System\CurrentControlSet\Control\Terminal Server\UserConfig, System\CurrentControlSet\Control\Terminal Server\DefaultUserConfiguration, Software\Microsoft\Windows NT\CurrentVersion\Perflib, System\CurrentControlSet\Services\SysmonLog' #Needs work to fix
+              match_output: '7,System\CurrentControlSet\Control\Print\Printers,System\CurrentControlSet\Services\Eventlog,Software\Microsoft\OLAP Server,Software\Microsoft\Windows NT\CurrentVersion\Print,Software\Microsoft\Windows NT\CurrentVersion\Windows,System\CurrentControlSet\Control\ContentIndex,System\CurrentControlSet\Control\Terminal Server,System\CurrentControlSet\Control\Terminal Server\UserConfig,System\CurrentControlSet\Control\Terminal Server\DefaultUserConfiguration,Software\Microsoft\Windows NT\CurrentVersion\Perflib, System\CurrentControlSet\Services\SysmonLog'
               value_type: 'equal'
       description: (l1) ensure 'network access - remotely accessible registry paths and sub-paths'
     network_access_restrict_anonymous_access_to_named_pipes_and_shares :
@@ -1496,7 +1496,7 @@ win_reg:
         'Microsoft Windows Server 2012*':
           - 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths\\*\NETLOGON':
               tag: CIS-18.4.13.1
-              match_output: '1' #with "Require Mutual Authentication" and "Require Integrity" set for all NETLOGON and SYSVOL shares'
+              match_output: 'RequireMutualAuthentication=1,RequireIntegrity=1'
               value_type: 'equal'
       description: (l1) ensure 'hardened unc paths' is set to 'enabled, with "require mutual authentication" and "require integrity" set for all netlogon and sysvol shares'
     Disable IPv6 :
